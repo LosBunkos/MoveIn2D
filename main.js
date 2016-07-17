@@ -58,7 +58,7 @@ var findOne = function(board) {
   return false;
 }
 
-var safelyMoveTo = function (board, curr, dy, dx) { 
+var safelyMoveTo = function (board, curr, dy, dx, functionAfter) { 
   newX = curr.x + dx;
   newY = curr.y + dy;
   if (typeof board[newY][newX] === 'undefined') {
@@ -68,6 +68,9 @@ var safelyMoveTo = function (board, curr, dy, dx) {
   } else {
     board[newY][newX] = 1;
     console.log("Moved to: {" + newX + ',' + newY + '}');
+  }
+  if(!(typeof functionAfter === 'undefined')) {
+    functionAfter();
   }
 }
 
