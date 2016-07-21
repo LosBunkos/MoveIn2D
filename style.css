@@ -1,0 +1,14 @@
+div .cell {
+  box-sizing: border-box;
+  height: 100%;
+  display: inline-block;
+  background-color: red;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+div .row {
+  margin: 0;
+  width: 100vw;
+  height: 20%;
+}
