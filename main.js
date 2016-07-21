@@ -87,7 +87,7 @@ var Board = function(width, height) {
       '} (_safelyGo())');
       this.x = newX;
       this.y = newY;
-      this.board[currY][currX] = 0; // bug
+      this.board[currY][currX] = 0;
       this.board[newY][newX] = 1;
     }
 

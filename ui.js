@@ -1,4 +1,4 @@
-board = new Board(8);
+board = new Board(5);
 board.init();
 
 divTemplate = function(x, y) {
