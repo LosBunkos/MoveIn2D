@@ -1,33 +1,48 @@
-keyToDirection = {
-  w : 'up',
-  a : 'left',
-  s : 'down',
-  d : 'right'
+board = new Board(9);
+board.init();
+
+divTemplate = function(x, y) {
+  return "<div data-x='" + x +
+            "' data-y='" + y + 
+            "'class='square'>" +
+         "</div>";
 }
 
-updateScreen = function(x, y) {
-  $('div .cell').css('background-color', 'red');
-  $('div #' + y + x).css('background-color', 'blue');
-}
-
-generateBoard = function(board) {
-  for(var i = 0; i < board.length; i++) {
-    $('#board').append('<div class="row">');
-    for(var j = 0; j < board[i].length; j++) {
-      $('#board').append('<div class="cell" style="width: '
-         + 100/board[i].length + '%" id="' + i + j + '"></div>');
+renderBoard = function() {
+  var tempBoard = ''; // For performance
+  $('#board').empty();
+  for (var i = 0; i < board.height; i++) {
+    for (var j = 0; j < board.width; j++) {
+      tempBoard += divTemplate(j, i);     
     }
   }
-$('#44').css('background-color', 'blue');
+
+  $('#board').append(tempBoard);
+  $('[data-x="' + board.x + '"][data-y="' + board.y + '"]').css('background-color', "black");
+  $('.square').css('width',((100 / board.width) + '%'));
+  $('.square').css('height',((100 / board.height) + '%'));
+
 }
 
-updateScreen(1,1);
+handleClicks = function() {
+  var keyToDirection = {
+    'w' : 'up',
+    's' : 'down',
+    'a' : 'left',
+    'd' : 'right'
+  }
 
-$(document).keypress(function(event){
-  move = String.fromCharCode(event.which); 
-  console.log(move);
-  go(keyToDirection[move], 1, Board, updateScreen);
-});
+  var move;
+  $(document).keypress(function(e) {
+    move = String.fromCharCode(e.which);
+    console.log('Notice: got keystroke: ' + move);
+    board.go(keyToDirection[move]);
+    renderBoard();
+  });
+}
 
+
+renderBoard();
+handleClicks();
 
 
