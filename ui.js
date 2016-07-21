@@ -1,4 +1,4 @@
-board = new Board(9);
+board = new Board(8);
 board.init();
 
 divTemplate = function(x, y) {
@@ -16,8 +16,8 @@ renderBoard = function() {
       tempBoard += divTemplate(j, i);     
     }
   }
-
   $('#board').append(tempBoard);
+
   $('[data-x="' + board.x + '"][data-y="' + board.y + '"]').css('background-color', "black");
   $('.square').css('width',((100 / board.width) + '%'));
   $('.square').css('height',((100 / board.height) + '%'));
