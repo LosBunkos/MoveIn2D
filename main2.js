@@ -1,10 +1,15 @@
-var Board = function(width,height) {
+var Board = function(width, height) {
   if(typeof height === 'undefined') { // allows 'new Board(5)'
     var height = weight;
   }
 
+  // Properties
+  this.width = width;
+  this.height = height;
+  this.board = [];
+
   // Methods
-  this.generate = function() {
+  this._generate = function() {
     var tempBoard = [];
     for (var i = 0; i < this.height; i++) {
       var tempRow = [];
@@ -16,8 +21,19 @@ var Board = function(width,height) {
     return tempBoard;
   }
 
-  // Properties
-  this.width = width;
-  this.height = height;
-  this.board = generate();
+  // Init board, [(0,0) (default) OR (x,y)] = 1
+  this init = function(x, y) { 
+    if(typeof x === 'undefined' || typeof y === 'undefined') {
+      console.log('x: was ' + x + '- now 0');
+      console.log('y: was ' + y + '- now 0');
+      var x = 0;
+      var y = 0;
+    }
+    this.board = this._generate(); // 'this' Might be problematic here (?)
+    this.board[y][x] = 1;
+  }
+
+  this.findOne
+
 }
+
