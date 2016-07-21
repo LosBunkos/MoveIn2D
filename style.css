@@ -1,14 +1,13 @@
-div .cell {
+div .square {
   box-sizing: border-box;
   height: 100%;
   display: inline-block;
-  background-color: red;
+  background-color: white;
   border: 1px solid black;
-  padding: 20px;
 }
 
-div .row {
-  margin: 0;
-  width: 100vw;
-  height: 20%;
+#board {
+  box-sizing: border-box;
+  width: 50vw;
+  height: 50vw;
 }

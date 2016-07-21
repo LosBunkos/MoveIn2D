@@ -32,7 +32,7 @@ var Board = function(width, height) {
       var x = 0;
       var y = 0;
     }
-    this.board = this._generate(); // 'this' Might be problematic here (?)
+    this.board = this._generate();
     this.board[y][x] = 1;
     this.x = x;
     this.y = y;
@@ -72,11 +72,11 @@ var Board = function(width, height) {
     var err = false;
 
     // Check for array overflows
-    if(currX + dx > maxX || currX + dx < 0) {
+    if(newX > maxX || newX < 0) {
       console.log('Error - X overflow (_safelyGo())');
       err = true;
     }
-    if(currY + dy > maxY || currX + dy < 0) {
+    if(newY > maxY || newY < 0) {
       console.log('Error - Y overflow (_safelyGo())');
       err = true;
     }
@@ -87,12 +87,11 @@ var Board = function(width, height) {
       '} (_safelyGo())');
       this.x = newX;
       this.y = newY;
-      this.board[currY][currX] = 0;
+      this.board[currY][currX] = 0; // bug
       this.board[newY][newX] = 1;
     }
 
     return !err;
   }
-
 
 }
