@@ -1,6 +1,6 @@
 var Board = function(width, height) {
   if(typeof height === 'undefined') { // allows 'new Board(5)'
-    var height = weight;
+    var height = width;
   }
 
   // Properties
@@ -24,10 +24,11 @@ var Board = function(width, height) {
   }
 
   // Init board, with [(0,0) (default) OR (x,y)] = 1
-  this init = function(x, y) { 
+  this.init = function(x, y) { 
     if(typeof x === 'undefined' || typeof y === 'undefined') {
-      console.log('Notice - x: was ' + x + '- now 0 (init())');
-      console.log('Notice - y: was ' + y + '- now 0 (init())');
+      console.log('Notice - x: was ' + x + ' - now 0 (init())');
+      console.log('Notice - y: was ' + y + ' - now 0 (init())');
+      console.log('Notice - Board initialized.');
       var x = 0;
       var y = 0;
     }
@@ -54,14 +55,14 @@ var Board = function(width, height) {
       return false;
     } else {
       if(this._safelyGo(directions[direction])) {
-        console.log('Notice: Went ' + direction + '. (go(_safelyGo()))')
+        console.log('Notice: Went ' + direction + '. (go())')
       }
     }
   }
 
   this._safelyGo = function(obj) {
-    var currX = this.board.x;
-    var currY = this.board.y;
+    var currX = this.x;
+    var currY = this.y;
     var dx = obj.x;
     var dy = obj.y;
     var newX = currX + dx;
@@ -71,21 +72,23 @@ var Board = function(width, height) {
     var err = false;
 
     // Check for array overflows
-    if(currX + d.x > maxX) {
+    if(currX + dx > maxX || currX + dx < 0) {
       console.log('Error - X overflow (_safelyGo())');
       err = true;
     }
-    if(currY + d.y > maxY) {
+    if(currY + dy > maxY || currX + dy < 0) {
       console.log('Error - Y overflow (_safelyGo())');
       err = true;
     }
     // if everything ok, proceed with moving the 1.
     if(!err) {
-      console.log('Notice: went success (_safelyGo())');
+      console.log('Notice: went success. new coordinates: {'
+        + newX + '; ' + newY +
+      '} (_safelyGo())');
       this.x = newX;
       this.y = newY;
-      board[currY][currX] = 0;
-      board[newY][newX] = 1;
+      this.board[currY][currX] = 0;
+      this.board[newY][newX] = 1;
     }
 
     return !err;
@@ -93,9 +96,3 @@ var Board = function(width, height) {
 
 
 }
-
-
-
-
-
-
