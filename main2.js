@@ -33,7 +33,15 @@ var Board = function(width, height) {
     this.board[y][x] = 1;
   }
 
-  this.findOne
+  this.findOne = function() {
+    for (var i = 0; i < this.height; i++) {
+      getIndex = this.board[height].indexOf(1);
+      if (getIndex > -1) {
+        return {x : getIndex, y : i};
+      }
+    }
+  }
+  
 
 }
 
