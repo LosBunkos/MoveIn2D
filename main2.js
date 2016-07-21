@@ -21,11 +21,11 @@ var Board = function(width, height) {
     return tempBoard;
   }
 
-  // Init board, [(0,0) (default) OR (x,y)] = 1
+  // Init board, with [(0,0) (default) OR (x,y)] = 1
   this init = function(x, y) { 
     if(typeof x === 'undefined' || typeof y === 'undefined') {
-      console.log('x: was ' + x + '- now 0');
-      console.log('y: was ' + y + '- now 0');
+      console.log('Notice - x: was ' + x + '- now 0');
+      console.log('Notice - y: was ' + y + '- now 0');
       var x = 0;
       var y = 0;
     }
@@ -41,7 +41,30 @@ var Board = function(width, height) {
       }
     }
   }
-  
 
+  // @amount{OPTIONAL}: default 1.
+  this.go = function(direction, amount) {
+    if(typeof amount === 'undefined') {
+      var amount = 1;
+    }
+    var directions = {
+      'up'   : {x: 0, y: -1 * amount},
+      'down' : {x: 0, y:  1 * amount},
+      'left' : {x: -1 * amount, y: 0},
+      'right': {x:  1 * amount, y: 0}
+    }
+
+    if(typeof directions[direction] === 'undefined') {
+      console.log("Error - Can't go " + direction);
+      return false;
+    } else {
+      this._safelyGo(directions[direction]);
+    }
+  }
 }
+
+
+
+
+
 
