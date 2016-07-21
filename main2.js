@@ -37,15 +37,6 @@ var Board = function(width, height) {
     this.y = y;
   }
 
-  this.findOne = function() { // Remove this
-    for (var i = 0; i < this.height; i++) {
-      getIndex = this.board[height].indexOf(1);
-      if (getIndex > -1) {
-        return {x : getIndex, y : i};
-      }
-    }
-  }
-
   // @amount{OPTIONAL}: default 1.
   this.go = function(direction, amount) {
     if(typeof amount === 'undefined') {
