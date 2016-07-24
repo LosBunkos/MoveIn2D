@@ -8,7 +8,7 @@ div .square {
 }
 
 #board {
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
   width: 600px;
   height: 600px;
   border: 1px solid black;
