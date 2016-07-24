@@ -1,4 +1,4 @@
-board = new Board(5);
+board = new Board(20);
 board.init();
 
 divTemplate = function(x, y) {
@@ -24,6 +24,11 @@ renderBoard = function() {
 
 }
 
+renderChanges = function() {
+  var $current = $('[data-x="' + board.x + '"][data-y="' + board.y + '"]').css('background-color', "black");
+  var $previous = $('[data-x="' + board.prevX + '"][data-y="' + board.prevY + '"]').css('background-color', "white");
+}
+
 handleClicks = function() {
   var keyToDirection = {
     'w' : 'up',
@@ -31,13 +36,13 @@ handleClicks = function() {
     'a' : 'left',
     'd' : 'right'
   }
-
   var move;
   $(document).keypress(function(e) {
     move = String.fromCharCode(e.which);
     console.log('Notice: got keystroke: ' + move);
-    board.go(keyToDirection[move]);
-    renderBoard();
+    if(board.go(keyToDirection[move])) {
+      renderChanges();
+    }
   });
 }
 

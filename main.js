@@ -9,6 +9,8 @@ var Board = function(width, height) {
   this.board = [];
   this.x = 0;
   this.y = 0;
+  this.prevX = 0;
+  this.prevY = 0;
 
   // Methods
   this._generate = function() {
@@ -56,6 +58,7 @@ var Board = function(width, height) {
     } else {
       if(this._safelyGo(directions[direction])) {
         console.log('Notice: Went ' + direction + '. (go())')
+        return true;
       }
     }
   }
@@ -85,12 +88,14 @@ var Board = function(width, height) {
       console.log('Notice: went success. new coordinates: {'
         + newX + '; ' + newY +
       '} (_safelyGo())');
+      this.prevX = this.x;
+      this.prevY = this.y;
       this.x = newX;
       this.y = newY;
       this.board[currY][currX] = 0;
       this.board[newY][newX] = 1;
     }
-
+    
     return !err;
   }
 
