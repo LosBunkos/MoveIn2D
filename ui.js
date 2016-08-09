@@ -1,4 +1,4 @@
-board = new Board(20);
+board = new Board(25);
 board.init();
 
 divTemplate = function(x, y) {
@@ -26,7 +26,7 @@ renderBoard = function() {
 
 renderChanges = function() {
   var $current = $('[data-x="' + board.x + '"][data-y="' + board.y + '"]').css('background-color', "black");
-  var $previous = $('[data-x="' + board.prevX + '"][data-y="' + board.prevY + '"]').css('background-color', "grey");
+  var $previous = $('[data-x="' + board.prevX + '"][data-y="' + board.prevY + '"]').css('background-color', "white");
 }
 
 handleClicks = function() {
